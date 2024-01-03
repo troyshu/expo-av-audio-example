@@ -6,9 +6,9 @@ export default function App() {
   const handleOnPress = async () => {
     console.log("Button pressed");
     await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
-    const { sound } = await Audio.Sound.createAsync(
-      require("./hello-world.mp3")
-    );
+    const { sound } = await Audio.Sound.createAsync({
+      uri: "https://firebasestorage.googleapis.com/v0/b/spreed-9532e.appspot.com/o/static%2Ftest%2Fhello-world.mp3?alt=media&token=b3d7542f-f11e-4592-885a-fe707b3b350f",
+    });
     await sound.setVolumeAsync(1);
     await sound.playAsync();
     console.warn("Played sound");
