@@ -1,9 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { Audio } from "expo-av";
 
 export default function App() {
-  const handleOnPress = () => {
+  const handleOnPress = async () => {
     console.log("Button pressed");
+    await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+    const { sound } = await Audio.Sound.createAsync(
+      require("./hello-world.mp3")
+    );
+    await sound.setVolumeAsync(1);
+    await sound.playAsync();
+    console.warn("Played sound");
   };
 
   return (
