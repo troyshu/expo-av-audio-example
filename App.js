@@ -7,10 +7,13 @@ export default function App() {
     console.log("Button pressed");
     await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
     const { sound } = await Audio.Sound.createAsync({
-      uri: "https://firebasestorage.googleapis.com/v0/b/spreed-9532e.appspot.com/o/static%2Ftest%2Fhello-world.mp3?alt=media&token=b3d7542f-f11e-4592-885a-fe707b3b350f",
+      uri: "https://firebasestorage.googleapis.com/v0/b/spreed-9532e.appspot.com/o/static%2Fvoice-samples%2FEKulI7jrH6kM0HWJLfZi.mp3?alt=media&token=b81705f5-9d24-4c68-add6-ff45c0c4c194",
     });
     await sound.setVolumeAsync(1);
+    // Some audio is "cut out" at rates higher than 2
+    await sound.setRateAsync(3, true);
     await sound.playAsync();
+
     console.warn("Played sound");
   };
 
